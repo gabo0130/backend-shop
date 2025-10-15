@@ -13,20 +13,30 @@ import { ProductRepositoryImpl } from './infrastructure/repositories/product.rep
 import { ProductOrm } from './infrastructure/persistence/product.orm';
 import { OrderOrm } from './infrastructure/persistence/order.orm';
 import { OrderController } from './presentation/controllers/order.controller';
-import { OrderUseCase } from './application/use-cases/create-order.use-case';
+import { OrderUseCase } from './application/use-cases/order.use-case';
 import { OrderRepositoryImpl } from './infrastructure/repositories/order.repository.impl';
 import { InventoryService } from './domain/services/inventory.service';
+import { CartOrm } from './infrastructure/persistence/cart.orm';
+import { CartController } from './presentation/controllers/cart.controller';
+import { CartUseCase } from './application/use-cases/cart.use-case';
+import { CartRepositoryImpl } from './infrastructure/repositories/cart.repository.impl';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(typeOrmConfig),
-    TypeOrmModule.forFeature([UserOrm, ProductOrm, OrderOrm]),
+    TypeOrmModule.forFeature([UserOrm, ProductOrm, OrderOrm, CartOrm]),
   ],
-  controllers: [UserController, ProductController, OrderController],
+  controllers: [
+    UserController,
+    ProductController,
+    OrderController,
+    CartController,
+  ],
   providers: [
     UserUseCase,
     ProductUseCase,
     OrderUseCase,
+    CartUseCase,
     InventoryService,
     AuthService,
     JwtProvider,
@@ -41,6 +51,10 @@ import { InventoryService } from './domain/services/inventory.service';
     {
       provide: 'OrderRepository',
       useClass: OrderRepositoryImpl,
+    },
+    {
+      provide: 'CartRepository',
+      useClass: CartRepositoryImpl,
     },
   ],
 })
