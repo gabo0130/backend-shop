@@ -76,4 +76,12 @@ export class ProductRepositoryImpl implements ProductRepository {
     if (!product) throw new Error('Product not found');
     return product.stock >= quantity;
   }
+
+  async decreaseStock(productId: string, qty: number): Promise<void> {
+    const product = await this.ormRepo.findOne({ where: { id: productId } });
+    if (!product) throw new Error('Product not found');
+    if (product.stock < qty) throw new Error('Insufficient stock');
+    product.stock -= qty;
+    await this.ormRepo.save(product);
+  }
 }

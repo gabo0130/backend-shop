@@ -8,4 +8,5 @@ export interface ProductRepository {
   delete(id: string): Promise<void>;
   addStock(productId: string, quantity: number): Promise<void>;
   checkStock(productId: string, quantity: number): Promise<boolean>;
+  decreaseStock(productId: string, qty: number): Promise<void>;
 }

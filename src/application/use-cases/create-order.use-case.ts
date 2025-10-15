@@ -4,13 +4,13 @@ import { Order } from '../../domain/entities/order.entity';
 import { v4 as uuidv4 } from 'uuid';
 import { InventoryService } from 'src/domain/services/inventory.service';
 
-export class CreateOrderUseCase {
+export class OrderUseCase {
   constructor(
     private readonly orderRepository: OrderRepository,
     private readonly inventoryService: InventoryService,
   ) {}
 
-  async execute(dto: CreateOrderDto): Promise<Order> {
+  async executeCreate(dto: CreateOrderDto): Promise<Order> {
     for (const item of dto.items) {
       const isInStock = await this.inventoryService.checkStock(
         item.productId,
@@ -31,5 +31,13 @@ export class CreateOrderUseCase {
       new Date(),
     );
     return await this.orderRepository.create(order);
+  }
+
+  async executeGetById(id: string): Promise<Order | null> {
+    return await this.orderRepository.findById(id);
+  }
+
+  async executeGetByUserId(userId: string): Promise<Order[]> {
+    return await this.orderRepository.findByUser(userId);
   }
 }

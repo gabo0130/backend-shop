@@ -15,4 +15,8 @@ export class InventoryService {
   async checkStock(productId: string, quantity: number): Promise<boolean> {
     return await this.productRepository.checkStock(productId, quantity);
   }
+
+  async decreaseStock(productId: string, qty: number): Promise<void> {
+    await this.productRepository.decreaseStock(productId, qty);
+  }
 }
