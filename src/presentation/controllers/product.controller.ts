@@ -6,11 +6,14 @@ import {
   Param,
   Put,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { CreateProductDto } from '../../application/dto/create-product.dto';
-import { ProductUseCase } from 'src/application/use-cases/create-product.use-case';
+import { ProductUseCase } from 'src/application/use-cases/product.use-case';
+import { JwtAuthGuard } from 'src/infrastructure/providers/jwt-auth.guard';
 
 @Controller('products')
+@UseGuards(JwtAuthGuard)
 export class ProductController {
   constructor(private readonly productUseCase: ProductUseCase) {}
 

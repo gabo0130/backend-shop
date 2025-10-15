@@ -1,10 +1,14 @@
-import { ProductRepository } from '../../domain/repositories/product.repository';
 import { CreateProductDto } from '../dto/create-product.dto';
 import { Product } from '../../domain/entities/product.entity';
 import { v4 as uuidv4 } from 'uuid';
+import { Inject } from '@nestjs/common';
+import type { ProductRepository } from 'src/domain/repositories/product.repository';
 
 export class ProductUseCase {
-  constructor(private readonly productRepository: ProductRepository) {}
+  constructor(
+    @Inject('ProductRepository')
+    private readonly productRepository: ProductRepository,
+  ) {}
 
   async executeCreate(dto: CreateProductDto): Promise<Product> {
     const product = new Product(
