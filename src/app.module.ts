@@ -11,16 +11,23 @@ import { ProductController } from './presentation/controllers/product.controller
 import { ProductUseCase } from './application/use-cases/product.use-case';
 import { ProductRepositoryImpl } from './infrastructure/repositories/product.repository.impl';
 import { ProductOrm } from './infrastructure/persistence/product.orm';
+import { OrderOrm } from './infrastructure/persistence/order.orm';
+import { OrderController } from './presentation/controllers/order.controller';
+import { OrderUseCase } from './application/use-cases/create-order.use-case';
+import { OrderRepositoryImpl } from './infrastructure/repositories/order.repository.impl';
+import { InventoryService } from './domain/services/inventory.service';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(typeOrmConfig),
-    TypeOrmModule.forFeature([UserOrm, ProductOrm]),
+    TypeOrmModule.forFeature([UserOrm, ProductOrm, OrderOrm]),
   ],
-  controllers: [UserController, ProductController],
+  controllers: [UserController, ProductController, OrderController],
   providers: [
     UserUseCase,
     ProductUseCase,
+    OrderUseCase,
+    InventoryService,
     AuthService,
     JwtProvider,
     {
@@ -30,6 +37,10 @@ import { ProductOrm } from './infrastructure/persistence/product.orm';
     {
       provide: 'ProductRepository',
       useClass: ProductRepositoryImpl,
+    },
+    {
+      provide: 'OrderRepository',
+      useClass: OrderRepositoryImpl,
     },
   ],
 })

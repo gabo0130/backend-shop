@@ -10,16 +10,16 @@ export class OrderController {
 
   @Post()
   async createOrder(@Body() dto: CreateOrderDto) {
-    return await this.orderUseCase.execute(dto);
+    return await this.orderUseCase.executeCreate(dto);
   }
 
   @Get(':userId')
   async getUserOrders(@Param('userId') userId: string) {
-    return await this.orderUseCase.findByUser(userId);
+    return await this.orderUseCase.executeGetByUserId(userId);
   }
 
   @Get('detail/:orderId')
   async getOrderById(@Param('orderId') orderId: string) {
-    return await this.orderUseCase.findById(orderId);
+    return await this.orderUseCase.executeGetById(orderId);
   }
 }
