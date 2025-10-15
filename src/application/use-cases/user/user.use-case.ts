@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@nestjs/common';
-import type { UserRepository } from '../../domain/repositories/user.repository';
-import { User } from '../../domain/entities/user.entity';
-import { AuthService } from 'src/domain/services/auth.service';
+import type { UserRepository } from '../../../domain/repositories/user.repository';
+import { User } from '../../../domain/entities/user.entity';
+import { AuthService } from 'src/domain/services';
 import { JwtProvider } from 'src/infrastructure/providers/jwt.provider';
 import { v4 as uuidv4 } from 'uuid';
 

@@ -3,23 +3,24 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserOrm } from './infrastructure/persistence/user.orm';
 import { typeOrmConfig } from './infrastructure/persistence/typeorm.config';
 import { UserController } from './presentation/controllers/user.controller';
-import { UserUseCase } from './application/use-cases/user.use-case';
 import { UserRepositoryImpl } from './infrastructure/repositories/user.repository.impl';
-import { AuthService } from './domain/services/auth.service';
 import { JwtProvider } from './infrastructure/providers/jwt.provider';
 import { ProductController } from './presentation/controllers/product.controller';
-import { ProductUseCase } from './application/use-cases/product.use-case';
 import { ProductRepositoryImpl } from './infrastructure/repositories/product.repository.impl';
 import { ProductOrm } from './infrastructure/persistence/product.orm';
 import { OrderOrm } from './infrastructure/persistence/order.orm';
 import { OrderController } from './presentation/controllers/order.controller';
-import { OrderUseCase } from './application/use-cases/order.use-case';
 import { OrderRepositoryImpl } from './infrastructure/repositories/order.repository.impl';
-import { InventoryService } from './domain/services/inventory.service';
 import { CartOrm } from './infrastructure/persistence/cart.orm';
 import { CartController } from './presentation/controllers/cart.controller';
-import { CartUseCase } from './application/use-cases/cart.use-case';
 import { CartRepositoryImpl } from './infrastructure/repositories/cart.repository.impl';
+import {
+  CartUseCase,
+  OrderUseCase,
+  ProductUseCase,
+  UserUseCase,
+} from './application/use-cases';
+import { AuthService, InventoryService } from './domain/services';
 
 @Module({
   imports: [

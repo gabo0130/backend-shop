@@ -8,8 +8,8 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AddToCartDto } from '../../application/dto/add-to-cart.dto';
-import { CartUseCase } from '../../application/use-cases/cart.use-case';
 import { JwtAuthGuard } from 'src/infrastructure/providers/jwt-auth.guard';
+import { CartUseCase } from 'src/application/use-cases/cart/cart.use-case';
 
 @Controller('cart')
 @UseGuards(JwtAuthGuard)

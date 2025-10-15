@@ -1,5 +1,5 @@
 import { Controller, Post, Body, UseGuards } from '@nestjs/common';
-import { UserUseCase } from '../../application/use-cases/user.use-case';
+import { UserUseCase } from '../../application/use-cases/user/user.use-case';
 import { CreateUserDto } from 'src/application/dto/create-user.dto';
 import { LoginUserDto } from 'src/application/dto/login-user.dto';
 import { JwtAuthGuard } from 'src/infrastructure/providers/jwt-auth.guard';

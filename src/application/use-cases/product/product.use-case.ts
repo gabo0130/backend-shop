@@ -1,5 +1,5 @@
-import { CreateProductDto } from '../dto/create-product.dto';
-import { Product } from '../../domain/entities/product.entity';
+import { CreateProductDto } from '../../dto/create-product.dto';
+import { Product } from '../../../domain/entities/product.entity';
 import { v4 as uuidv4 } from 'uuid';
 import { Inject } from '@nestjs/common';
 import type { ProductRepository } from 'src/domain/repositories/product.repository';

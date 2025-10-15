@@ -1,8 +1,8 @@
-import type { OrderRepository } from '../../domain/repositories/order.repository';
-import { CreateOrderDto } from '../dto/create-order.dto';
-import { Order } from '../../domain/entities/order.entity';
+import type { OrderRepository } from '../../../domain/repositories/order.repository';
+import { CreateOrderDto } from '../../dto/create-order.dto';
+import { Order } from '../../../domain/entities/order.entity';
 import { v4 as uuidv4 } from 'uuid';
-import { InventoryService } from 'src/domain/services/inventory.service';
+import { InventoryService } from 'src/domain/services';
 import { Inject } from '@nestjs/common';
 
 export class OrderUseCase {
