@@ -64,4 +64,16 @@ export class ProductRepositoryImpl implements ProductRepository {
   async delete(id: string): Promise<void> {
     await this.ormRepo.delete(id);
   }
+
+  async addStock(productId: string, quantity: number): Promise<void> {
+    const product = await this.ormRepo.findOne({ where: { id: productId } });
+    if (!product) throw new Error('Product not found');
+    product.stock += quantity;
+    await this.ormRepo.save(product);
+  }
+  async checkStock(productId: string, quantity: number): Promise<boolean> {
+    const product = await this.ormRepo.findOne({ where: { id: productId } });
+    if (!product) throw new Error('Product not found');
+    return product.stock >= quantity;
+  }
 }
